@@ -62,12 +62,18 @@ Route::get('/', function () {
     //return redirect('/');
 //});
 
-Route::get('test20', [Mycontroller::class,'My_data']);
+//Route::get('test20', [Mycontroller::class,'My_data']);
 
 Route::get('form1', function () {
-    return view('form1');
+  return view('form1');
 });
 
-Route::post('recform1', function () {
-    return 'data recevied';
-})->name('receiveform1');//programming name
+Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
+
+//Route::post('recform1', function () {
+
+ // Route::get('form1', [Mycontroller::class,'receiveForm1']);
+
+   //return 'data recevied';
+//})->name('receiveform1');//programming name
+
