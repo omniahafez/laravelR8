@@ -2,11 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
+use App\Http\Controllers\Clientcontroller;
+use App\Http\Controllers\Studentcontroller;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::post('insertclient', [Clientcontroller::class,'store'])->name('insertclient');
+Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertstudent');
 //practical: without parameter
 //Route::get('omnia', function () {
     //return ('welcome to my web');
@@ -64,12 +69,10 @@ Route::get('/', function () {
 
 //Route::get('test20', [Mycontroller::class,'My_data']);
 
-Route::get('form1', function () {
-  return view('form1');
-});
-
-Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
-
+Route::get('clientForm', [Clientcontroller::class, 'create']);
+Route::get('addstudent', [Studentcontroller::class, 'create']);
+//Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
+//Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', function () {
 
  // Route::get('form1', [Mycontroller::class,'receiveForm1']);
