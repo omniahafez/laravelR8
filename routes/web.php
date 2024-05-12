@@ -69,8 +69,10 @@ Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertst
 
 //Route::get('test20', [Mycontroller::class,'My_data']);
 
-Route::get('clientForm', [Clientcontroller::class, 'create']);
-Route::get('addstudent', [Studentcontroller::class, 'create']);
+Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
+Route::get('clients', [Clientcontroller::class, 'index'])->name('clients');
+Route::get('addstudent', [Studentcontroller::class, 'create'])->name(('addstudent'));
+Route::get('students', [Studentcontroller::class, 'index'])->name('students');
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', function () {
@@ -79,4 +81,3 @@ Route::get('addstudent', [Studentcontroller::class, 'create']);
 
    //return 'data recevied';
 //})->name('receiveform1');//programming name
-

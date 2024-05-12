@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class Clientcontroller extends Controller
 {
+    private $colums =['clientName', 'phone', 'email', 'website'];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $clients= Client::get ();
+        return view ('clients', compact('clients'));
     }
 
     /**
@@ -20,7 +22,7 @@ class Clientcontroller extends Controller
      */
     public function create()
     {
-        return view('clientForm');
+        return view('addClient');
     }
 
     /**
@@ -28,20 +30,16 @@ class Clientcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //$client = new Client();
-        //$client->clientName = "omnia";
-        //$client->phone = "0346676";
-       // $client->email = "gg@mm.com";
-        //$client->website = "www.omom.eg";
+    
+        //$client= new Client();
+       // $client->clientname =$request->input('name');
+       // $client->phone = $request->input('phone');
+        //$client->email = $request->input('email');
+        //$client->website = $request->input('website');
         //$client->save();
-        //return 'inserted succ';
-        $client= new Client();
-        $client->clientname =$request->input('name');
-        $client->phone = $request->input('phone');
-        $client->email = $request->input('email');
-        $client->website = $request->input('website');
-        $client->save();
-        return 'Inserted';
+        //return 'Inserted';
+        client::create ($request->only($this->colums));
+        return redirect('clients');
     }
     /**
      * Display the specified resource.

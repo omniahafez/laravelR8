@@ -9,15 +9,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.studentNav')
-<h2>Add student</h2>
+@include('includes.nav')
+<h2>HTML Forms</h2>
 
-<form action="{{'insertstudent'}}" method="post">
+<form action="{{ route('insertclient')}}" method="post">
     @csrf
-  <label for="fname">student name:</label><br>
-  <input type="text" id="name" name="studentName" value=""><br>
-  <label for="age">age:</label><br>
-  <input type="text" id="age" name="age" value=""><br><br>
+  <label for="fname">client name:</label><br>
+  <input type="text" id="fname" name="clientName"class="form-control" ><br>
+  <label for="lname">phone:</label><br>
+  <input type="text" id="lname" name="phone" class="form-control"><br><br>
+  <label for="lname">email:</label><br>
+  <input type="text" id="lname" name="email" class="form-control"><br><br>
+  <label for="lname">website:</label><br>
+  <input type="text" id="lname" name="website" class="form-control"><br><br>
   <input type="submit" value="Submit">
 </form> 
 
