@@ -20,6 +20,9 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Website</th>
+        <th>edit</th>
+        <th>show</th>
+        <th>delete</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +32,16 @@
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
+        <td><a href="{{ route('editClients', $client->id)}}">Edit</a></td>
+        <td><a href="{{ route('showClients', $client->id)}}">show client</a></td>
+        <td>
+        <form action="{{ route ('delClient')}}"  method="post">
+        @csrf
+    @method('delete')
+            <input type="hidden" value="{{$client->id}}" name="id">
+            <input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete">
+          </form>
+          </td>
       </tr>
       @endforeach
     </tbody>

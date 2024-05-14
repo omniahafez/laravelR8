@@ -71,8 +71,18 @@ Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertst
 
 Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
 Route::get('clients', [Clientcontroller::class, 'index'])->name('clients');
+Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editClients');
+Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
+Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
+Route::delete('delClient', [Clientcontroller::class, 'destroy'])->name('delClient');
+
 Route::get('addstudent', [Studentcontroller::class, 'create'])->name(('addstudent'));
 Route::get('students', [Studentcontroller::class, 'index'])->name('students');
+Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editStudent');
+Route::put('updateStudent/{id}', [Studentcontroller::class, 'update'])->name('updateStudent');
+Route::get('showStudent/{id}', [Studentcontroller::class, 'show'])->name('showStudent');
+Route::delete('delStudent', [Studentcontroller::class, 'destroy'])->name('delStudent');
+
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', function () {
