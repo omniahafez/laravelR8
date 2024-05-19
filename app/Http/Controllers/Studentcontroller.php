@@ -14,7 +14,7 @@ class Studentcontroller extends Controller
      */
     public function index()
     {
-        $students = DB::table('students')->get();
+        $students = DB::table('students')->whereNull('deleted_at')->get();
  
         return view('students', ['students' => $students]);
     
@@ -38,10 +38,13 @@ class Studentcontroller extends Controller
         //$student->age = $request->input('age');
         //$student->save();
         //return 'Inserted';
-
+        $studentData = $request->validate([
+            'studentName' => 'required|min:5|max:100',
+            'age' => 'required|min:1|max:40',
+        ]);
         DB::table('students')->insert([
-            'studentName' => $request->input('studentName'),
-            'age' => $request->input('age'),
+            'studentName' => $studentData['studentName'],
+            'age' => $studentData['age'],
         ]);
 
         return redirect('students');
@@ -70,6 +73,7 @@ class Studentcontroller extends Controller
      */
     public function edit(string $id)
     {
+        
         $student = Student::findOrFail($id);
     return view('editStudent', compact('student'));
     }
@@ -79,9 +83,15 @@ class Studentcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-         // Retrieve data from the request
-    $studentName = $request->input('studentName');
-    $age = $request->input('age');
+        $studentData = $request->validate([
+            'studentName' => 'required|min:5|max:100',
+            'age' => 'required|min:1|max:40',
+        ]);
+
+
+         // Retrieve data from the validated
+         $studentName = $studentData['studentName'];
+         $age = $studentData['age'];
     
     // Update the record in the students table
     DB::table('students')
@@ -102,11 +112,50 @@ class Studentcontroller extends Controller
     {
       // Retrieve the ID of the student to be deleted from the request
     $id = $request->input('id');
+// Perform soft delete by updating the deleted_at column
+$deleted = DB::table('students')->where('id', $id)->update(['deleted_at' => now()]);
 
-    // Delete the record from the students table based on the ID
-    DB::table('students')->where('id', $id)->delete();
+if ($deleted) {
+    // Redirect back to the students page with a success message
+    return redirect('students')->with('success', 'Student soft deleted successfully.');
+} else {
+    // Redirect back with an error message if the student was not found or not deleted
+    return redirect('students')->with('error', 'Failed to soft delete student.');
+}
+}
 
-    // Redirect back to the students page or any other appropriate page
+    /**
+     * trash.
+     */
+    public function trash()
+    {
+        $trashed = Student::onlyTrashed()->get();
+    return view('trashStudents', compact('trashed'));
+    }
+
+    /**
+    * restore.
+    */
+   public function restore(string $id)
+   {
+    Student:: where('id', $id)->restore();
     return redirect('students');
-    }  
+   }
+
+   /**
+     * forcedelete.
+     */
+    public function forceDelete(Request $request)
+    {
+        $id = $request->id;
+
+    $deleted = DB::table('students')->where('id', $id)->delete();
+
+    if ($deleted) {
+        return redirect('trashStudents')->with('success', 'Student permanently deleted successfully.');
+    } else {
+        return redirect('trashStudents')->with('error', 'Failed to permanently delete student.');
+    }
+    }
+
 }

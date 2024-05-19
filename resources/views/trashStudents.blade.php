@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>students</title>
+  <title>trash students</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,37 +12,26 @@
 @include('includes.studentNav')
 
 <div class="container">
-  <h2>students Data</h2>
-  @if (session('success'))
-      <div class="alert alert-success">
-          {{ session('success') }}
-      </div>
-  @endif
-
-  @if (session('error'))
-      <div class="alert alert-danger">
-          {{ session('error') }}
-      </div>
-  @endif
+  <h2>trash students Data</h2>
   <table class="table table-hover">
     <thead>
       <tr>
         <th>student Name</th>
         <th>age</th>
-        <th>edit</th>
+        <th>restore</th>
         <th>show</th>
         <th>delete</th>
       </tr>
     </thead>
     <tbody>
-@foreach($students as $student)
+@foreach($trashed as $student)
       <tr>
         <td>{{$student->studentName}}</td>
         <td>{{$student->age}}</td>
-        <td><a href="{{ route('editStudent', $student->id)}}">edit</a></td>
+        <td><a href="{{ route('restoreStudents', $student->id)}}">restore</a></td>
         <td><a href="{{ route('showStudent', $student->id)}}">show </a></td>
         <td>
-        <form action="{{ route ('delStudent')}}"  method="post">
+        <form action="{{ route ('forceDeleteStudents')}}"  method="post">
         @csrf
     @method('delete')
             <input type="hidden" value="{{$student->id}}" name="id">

@@ -15,8 +15,18 @@
 <form action="{{'insertstudent'}}" method="post">
     @csrf
   <label for="fname">student name:</label><br>
+  <p style="color: red">
+  @error('studentName')
+  {{$message}}
+  @enderror
+  </p>
   <input type="text" id="name" name="studentName" value=""><br>
   <label for="age">age:</label><br>
+  <p style="color: red">
+  @error('age')
+  {{$message}}
+  @enderror
+  </p>
   <input type="text" id="age" name="age" value=""><br><br>
   <input type="submit" value="Submit">
 </form> 

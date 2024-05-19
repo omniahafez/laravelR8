@@ -75,6 +75,11 @@ Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editCli
 Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
 Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
 Route::delete('delClient', [Clientcontroller::class, 'destroy'])->name('delClient');
+Route::delete('forceDeleteClients', [Clientcontroller::class, 'forcedelete'])->name('forceDeleteClients');
+Route::get('trashClients', [Clientcontroller::class, 'trash'])->name('trashClients');
+Route::get('restoreClients/{id}', [Clientcontroller::class, 'restore'])->name('restoreClients');
+
+
 
 Route::get('addstudent', [Studentcontroller::class, 'create'])->name(('addstudent'));
 Route::get('students', [Studentcontroller::class, 'index'])->name('students');
@@ -82,6 +87,10 @@ Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editSt
 Route::put('updateStudent/{id}', [Studentcontroller::class, 'update'])->name('updateStudent');
 Route::get('showStudent/{id}', [Studentcontroller::class, 'show'])->name('showStudent');
 Route::delete('delStudent', [Studentcontroller::class, 'destroy'])->name('delStudent');
+Route::delete('forceDeleteStudents', [Studentcontroller::class, 'forcedelete'])->name('forceDeleteStudents');
+Route::get('trashStudents', [Studentcontroller::class, 'trash'])->name('trashStudents');
+Route::get('restoreStudents/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudents');
+
 
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');

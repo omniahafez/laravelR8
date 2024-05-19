@@ -7,6 +7,7 @@
     <ul class="nav navbar-nav">
       <li class= "active"> <a href="{{ route ('addClient')}}">add</a></li>
           <li><a href="{{ route ('clients')}}">clients</a></li>
+          <li><a href="{{ route ('trashClients')}}">trashed</a></li>
           
       <li><a href="#">page 2</a></li>
       <li><a href="#">Page 3</a></li>

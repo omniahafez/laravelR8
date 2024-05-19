@@ -16,12 +16,32 @@
     @csrf
     @method('put')
   <label for="fname">client name:</label><br>
+  <p style="color: red">
+@error('clientName')
+{{$message}}
+@enderror
+</p>
   <input type="text" id="fname" name="clientName"class="form-control" value="{{ $client->clientName }}"><br>
   <label for="lname">phone:</label><br>
+  <p style="color: red">
+@error('phone')
+{{$message}}
+@enderror
+</p>
   <input type="text" id="lname" name="phone" class="form-control" value="{{ $client->phone }}" ><br><br>
   <label for="lname">email:</label><br>
+  <p style="color: red">
+@error('email')
+{{$message}}
+@enderror
+</p>
   <input type="text" id="lname" name="email" class="form-control" value="{{ $client->email }} "><br><br>
   <label for="lname">website:</label><br>
+  <p style="color: red">
+@error('website')
+{{$message}}
+@enderror
+</p>
   <input type="text" id="lname" name="website" class="form-control" value="{{ $client->website }} "><br><br>
   <input type="submit" value="Submit">
 </form> 
