@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
+
 class Clientcontroller extends Controller
 {
     //private $colums =['clientName', 'phone', 'email', 'website'];
@@ -39,13 +40,32 @@ class Clientcontroller extends Controller
         //$client->website = $request->input('website');
         //$client->save();
         //return 'Inserted';
+
+$messages = $this->erMsg();
+
         $data = $request->validate([
 
 'clientName'=> 'required|max:100|min:5',
 'phone'=> 'required|min:11',
 'email'=> 'required|email:rfc',
 'website'=> 'required',
-        ]);
+'city'=> 'required|max:30',
+'image'=>'required',
+        ],$messages);
+
+  // Store the image      
+$imgExt = $request->image->getClientOriginalExtension();
+$fileName = time().'.' . $imgExt;
+
+$path = 'assets/images';
+
+$request->image->move($path, $fileName);
+$data['image'] = $fileName;
+
+// Handle the active checkbox
+$data['active'] = isset ($request->active);
+
+        
         client::create($data);
         return redirect('clients');
     }
@@ -73,13 +93,46 @@ class Clientcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $client = Client::findOrFail($id);
+        $messages = $this->erMsg();
         $data = $request->validate([
 
             'clientName'=> 'required|max:100|min:5',
             'phone'=> 'required|min:11',
             'email'=> 'required|email:rfc',
             'website'=> 'required',
-                    ]);
+            'city'=> 'required|max:30',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate the image
+        ],$messages);
+// Handle the active checkbox
+        $data['active'] = isset ($request->active);
+
+// Handle image upload
+if (isset($request->image) && $request->hasFile('image')) {
+    // Delete the old image if it exists
+    if (isset($client->image) && $client->image) {
+        $oldImagePath =('assets/images/' . $client->image);
+        if (file_exists($oldImagePath)) {
+            unlink($oldImagePath);
+        }
+    }
+
+    // Store the new image
+
+    $newImage = $request->image->getClientOriginalExtension();
+$fileName = time().'.' . $newImage;
+
+$path = 'assets/images';
+
+$request->image->move($path, $fileName);
+        $data['image'] = $fileName;
+} else {
+    // Keep the old image if no new image is uploaded
+    $data['image'] = $client->image;
+}
+
+
+
        Client:: where('id', $id)->update($data);
        return redirect('clients');
     }
@@ -119,6 +172,17 @@ class Clientcontroller extends Controller
         $id = $request->id;
         Client:: where('id', $id)->forcedelete();
         return redirect('trashClients');
+    }
+
+    public function erMsg()
+    {
+return[
+    'clientName.required' =>'the client name is missed',
+    'clientName.min' =>'the client name must be more than 5 char',
+    
+    ];
+
+
     }
 
 }

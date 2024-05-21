@@ -12,7 +12,7 @@
 @include('includes.nav')
 <h2>HTML Forms</h2>
 
-<form action="{{ route('insertclient')}}" method="post">
+<form action="{{ route('insertclient')}}" method="post" enctype="multipart/form-data">
     @csrf
   <label for="fname">client name:</label><br>
   <p style="color: red">
@@ -20,28 +20,46 @@
 {{$message}}
 @enderror
 </p>
-  <input type="text" id="fname" name="clientName"class="form-control" ><br>
+  <input type="text" id="fname" name="clientName"class="form-control" value="{{old ('clientName')}}" ><br>
   <label for="lname">phone:</label><br>
   <p style="color: red">
 @error('phone')
 {{$message}}
 @enderror
 </p>
-  <input type="text" id="lname" name="phone" class="form-control"><br><br>
+  <input type="text" id="lname" name="phone" class="form-control" value="{{old ('phone')}}"><br><br>
   <label for="lname">email:</label><br>
   <p style="color: red">
 @error('email')
 {{$message}}
 @enderror
 </p>
-  <input type="text" id="lname" name="email" class="form-control"><br><br>
+  <input type="text" id="lname" name="email" class="form-control" value="{{old ('email')}}"><br><br>
   <label for="lname">website:</label><br>
   <p style="color: red">
 @error('website')
 {{$message}}
 @enderror
 </p>
-  <input type="text" id="lname" name="website" class="form-control"><br><br>
+  <input type="text" id="lname" name="website" class="form-control" value="{{old ('website')}}"><br><br>
+  <label for="city">City:</label><br>
+  <p style="color: red">
+@error('city')
+{{$message}}
+@enderror
+</p>
+    <select name="city" id="city" class="form-control">
+      <option value="">Please Select City</option>
+      <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza"{{ old('city') == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex"{{ old('city') == 'Alex' ? 'selected' : '' }}>Alex</option>
+    </select>
+    <br><br>
+    <label for="active">Active:</label><br>
+    <input type="checkbox" id="active" name="active" class="form-control" {{ old('active') ? 'checked' : '' }}><br><br>
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" class="form-control"><br><br>
+
   <input type="submit" value="Submit">
 </form> 
 

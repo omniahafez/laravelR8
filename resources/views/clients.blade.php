@@ -20,6 +20,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Website</th>
+        <th>active</th>
         <th>edit</th>
         <th>show</th>
         <th>delete</th>
@@ -32,6 +33,7 @@
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
+        <td>{{$client->active ? 'yes':'No'}}</td>
         <td><a href="{{ route('editClients', $client->id)}}">Edit</a></td>
         <td><a href="{{ route('showClients', $client->id)}}">show client</a></td>
         <td>

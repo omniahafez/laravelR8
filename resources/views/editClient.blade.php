@@ -12,7 +12,7 @@
 @include('includes.nav')
 <h2>edit client</h2>
 
-<form action="{{ route('updateClients', ['id' => $client->id])}}" method="post">
+<form action="{{ route('updateClients', ['id' => $client->id])}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
   <label for="fname">client name:</label><br>
@@ -43,6 +43,33 @@
 @enderror
 </p>
   <input type="text" id="lname" name="website" class="form-control" value="{{ $client->website }} "><br><br>
+
+  <label for="city">City:</label><br>
+  <p style="color: red">
+@error('city')
+{{$message}}
+@enderror
+</p>
+    <select name="city" id="city" class="form-control">
+      <option value="">Please Select City</option>
+      <option value="Cairo" {{ old('city', $client->city) == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza"{{ old('city', $client->city) == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex"{{ old('city', $client->city) == 'Alex' ? 'selected' : '' }}>Alex</option>
+    </select>
+    <br><br>
+    <label for="active">Active:</label><br>
+    <input type="checkbox" id="active" name="active" class="form-control" {{ old('active', $client->active) ? 'checked' : '' }}><br><br>
+
+ <!-- Display existing image if it exists -->
+ @if($client->image)
+        <label for="current_image">Current Image:</label><br>
+        <img src="{{ asset('assets/images/' . $client->image) }}" alt="Client Image" style="max-width: 200px; max-height: 200px;"><br><br>
+    @endif
+
+    <label for="image">Upload New Image:</label><br>
+    <input type="file" id="image" name="image" class="form-control"><br><br>
+
+
   <input type="submit" value="Submit">
 </form> 
 

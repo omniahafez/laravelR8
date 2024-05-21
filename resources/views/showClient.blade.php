@@ -9,6 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<p><img src=" {{ asset('assets/images/'. $client->image) }}  " alt=""></p>
 <label for="fname">client name:</label><br>
   <input type="text" id="fname" name="clientName"class="form-control" value="{{ $client->clientName }}"><br>
   <label for="lname">phone:</label><br>
