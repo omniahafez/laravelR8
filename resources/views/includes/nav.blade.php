@@ -8,7 +8,8 @@
       <li class= "active"> <a href="{{ route ('addClient')}}">add</a></li>
           <li><a href="{{ route ('clients')}}">clients</a></li>
           <li><a href="{{ route ('trashClients')}}">trashed</a></li>
-          
+          @yeild('menu')
+    @stack('submenu')
       <li><a href="#">page 2</a></li>
       <li><a href="#">Page 3</a></li>
     </ul>

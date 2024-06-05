@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Traits\Traits\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 
+
 class Clientcontroller extends Controller
 {
+    use UploadFile;
     //private $colums =['clientName', 'phone', 'email', 'website'];
     /**
      * Display a listing of the resource.
@@ -54,12 +57,13 @@ $messages = $this->erMsg();
         ],$messages);
 
   // Store the image      
-$imgExt = $request->image->getClientOriginalExtension();
-$fileName = time().'.' . $imgExt;
+//$imgExt = $request->image->getClientOriginalExtension();
+//$fileName = time().'.' . $imgExt;
 
-$path = 'assets/images';
+//$path = 'assets/images';
 
-$request->image->move($path, $fileName);
+//$request->image->move($path, $fileName);
+$fileName= $this->upload($request->image, 'assets/images');
 $data['image'] = $fileName;
 
 // Handle the active checkbox
@@ -105,6 +109,8 @@ $data['active'] = isset ($request->active);
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate the image
         ],$messages);
 // Handle the active checkbox
+
+//dd($data);
         $data['active'] = isset ($request->active);
 
 // Handle image upload
@@ -119,12 +125,13 @@ if (isset($request->image) && $request->hasFile('image')) {
 
     // Store the new image
 
-    $newImage = $request->image->getClientOriginalExtension();
-$fileName = time().'.' . $newImage;
+   // $newImage = $request->image->getClientOriginalExtension();
+//$fileName = time().'.' . $newImage;
 
-$path = 'assets/images';
+//$path = 'assets/images';
 
-$request->image->move($path, $fileName);
+//$request->image->move($path, $fileName);
+$fileName= $this->upload($request->image, 'assets/images');
         $data['image'] = $fileName;
 } else {
     // Keep the old image if no new image is uploaded

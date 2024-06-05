@@ -6,7 +6,7 @@ use App\Http\Controllers\Clientcontroller;
 use App\Http\Controllers\Studentcontroller;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stacked');
 });
 
 

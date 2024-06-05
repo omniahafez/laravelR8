@@ -52,13 +52,13 @@
 </p>
     <select name="city" id="city" class="form-control">
       <option value="">Please Select City</option>
-      <option value="Cairo" {{ old('city', $client->city) == 'Cairo' ? 'selected' : '' }}>Cairo</option>
-      <option value="Giza"{{ old('city', $client->city) == 'Giza' ? 'selected' : '' }}>Giza</option>
-      <option value="Alex"{{ old('city', $client->city) == 'Alex' ? 'selected' : '' }}>Alex</option>
+      <option value="Cairo" {{ $client->city == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza"{{ $client->city == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex"{{ $client->city == 'Alex' ? 'selected' : '' }}>Alex</option>
     </select>
     <br><br>
     <label for="active">Active:</label><br>
-    <input type="checkbox" id="active" name="active" class="form-control" {{ old('active', $client->active) ? 'checked' : '' }}><br><br>
+    <input type="checkbox" id="active" name="active" class="form-control" {{ $client->active ? 'checked' : '' }}><br><br>
 
  <!-- Display existing image if it exists -->
  @if($client->image)
