@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ClientSeeder::class,
         ]);
-
+        User::factory(50)->create();
         if (!User::where('email', 'test@example.com')->exists()) {
             User::factory()->create([
                 'name' => 'Test User',
