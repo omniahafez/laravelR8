@@ -70,6 +70,16 @@
     <input type="file" id="image" name="image" class="form-control"><br><br>
 
 
+
+    <label for="fname">address:</address>:</label><br>
+  <p style="color: red">
+@error('address')
+{{$message}}
+@enderror
+</p>
+  <input type="text" id="fname" name="address"class="form-control" value="{{ $client->address }}"><br>
+
+
   <input type="submit" value="Submit">
 </form> 
 

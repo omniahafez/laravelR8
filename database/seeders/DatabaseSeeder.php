@@ -3,6 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Client;
+use App\Models\City;
+use App\Models\schoolClass;
+use App\Models\Student_Classes;
+use App\Models\Student;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,15 +21,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        $this->call([
-            ClientSeeder::class,
-        ]);
+        //$this->call([
+           // ClientSeeder::class,
+        //]);
         User::factory(50)->create();
-        if (!User::where('email', 'test@example.com')->exists()) {
-            User::factory()->create([
-                'name' => 'Test User',
-                'email' => 'test@example.com',
-            ]);
-        }
+        City::factory(50)->create();
+        Client::factory(50)->create();
+        schoolClass::factory(50)->create();
+        Student::factory(50)->create();
+        Student_Classes::factory(50)->create();
+       // if (!User::where('email', 'test@example.com')->exists()) {
+            //User::factory()->create([
+               // 'name' => 'Test User',
+              //  'email' => 'test@example.com',
+           // ]);
+       // }
     }
 }

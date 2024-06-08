@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 use App\Http\Controllers\Clientcontroller;
 use App\Http\Controllers\Studentcontroller;
-use App\Http\Controllers\Employeecontroller;
-use App\Models\Employee;
+
 
 Route::get('/', function () {
     return view('stacked');
@@ -94,7 +93,7 @@ Route::get('trashStudents', [Studentcontroller::class, 'trash'])->name('trashStu
 Route::get('restoreStudents/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudents');
 
 
-Route::get('insertEmployee', [Employeecontroller::class, 'store'])->name('insertEmployee');
+
 
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');

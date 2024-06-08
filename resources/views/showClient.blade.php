@@ -18,6 +18,7 @@
   <input type="text" id="lname" name="email" class="form-control" value="{{ $client->email }} "><br><br>
   <label for="lname">website:</label><br>
   <input type="text" id="lname" name="website" class="form-control" value="{{ $client->website }} "><br><br>
-  
+  <label for="lname">city</label><br>
+  <input type="text" id="lname" name="website" class="form-control" value="{{ $client->city->city }} "><br><br>
 </body>
 </html>
