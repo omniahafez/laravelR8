@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students_classes', function (Blueprint $table) {
+        Schema::create('student_classes', function (Blueprint $table) {
             $table->foreignId('class_id')->constrained('school_classes');
             $table->foreignId('student_id')->constrained('students');
             $table->timestamps();
+
+            $table->primary(['class_id', 'student_id']); // same student cannot be enrolled in the same class more than once.
         });
     }
 

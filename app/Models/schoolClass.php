@@ -11,7 +11,7 @@ class schoolClass extends Model
     protected $fillable = [
         'className',
         'teacherName',
-        'student_id'
+    
     ];
     public function students()
     {

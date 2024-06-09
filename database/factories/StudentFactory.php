@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\schoolClass;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class StudentFactory extends Factory
         return [
             'studentName' => fake()->name(),
             'age' => fake()->numberBetween(4, 18),
-            'class' => fake()->numberBetween(1.5),
+            'class' => fake()->name(),
         ];
     }
 }

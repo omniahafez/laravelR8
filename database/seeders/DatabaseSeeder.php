@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\City;
 use App\Models\schoolClass;
-use App\Models\Student_Classes;
+use App\Models\StudentClasses;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -27,14 +27,23 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
         City::factory(50)->create();
         Client::factory(50)->create();
-        schoolClass::factory(50)->create();
-        Student::factory(50)->create();
-        Student_Classes::factory(50)->create();
+        $classes = SchoolClass::factory(50)->create();
+        $students = Student::factory(50)->create();
+        
        // if (!User::where('email', 'test@example.com')->exists()) {
             //User::factory()->create([
                // 'name' => 'Test User',
               //  'email' => 'test@example.com',
            // ]);
        // }
+
+
+       // Attach students to classes
+       $students->each(function ($student) use ($classes) {
+         StudentClasses::factory()->create([
+             'student_id' => $student->id,
+             'class_id' => $classes->random()->id,
+         ]);
+     });
     }
 }
