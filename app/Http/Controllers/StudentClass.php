@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\schoolClass;
-
 class StudentClass extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */

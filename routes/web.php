@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 use App\Http\Controllers\Clientcontroller;
 use App\Http\Controllers\Studentcontroller;
+use Illuminate\Support\Facades\Mail;
 
 
 Route::get('/', function () {
-    return view('stacked');
+    return view('welcome');
 });
 
 
@@ -71,7 +72,7 @@ Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertst
 //Route::get('test20', [Mycontroller::class,'My_data']);
 
 Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
-Route::get('clients', [Clientcontroller::class, 'index'])->name('clients');
+Route::get('clients', [Clientcontroller::class, 'index'])->middleware('verified')->name('clients');
 Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editClients');
 Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
 Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
@@ -103,3 +104,17 @@ Route::get('restoreStudents/{id}', [Studentcontroller::class, 'restore'])->name(
 
    //return 'data recevied';
 //})->name('receiveform1');//programming name
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/send-test-email', function () {
+  Mail::raw('This is a test email', function ($message) {
+      $message->to('test@example.com')
+              ->subject('Test Email');
+  });
+
+  return 'Test email sent!';
+});
