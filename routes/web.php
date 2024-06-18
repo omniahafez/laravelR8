@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
-use App\Http\Controllers\Clientcontroller;
+//use App\Http\Controllers\Clientcontroller;
 use App\Http\Controllers\Studentcontroller;
 use Illuminate\Support\Facades\Mail;
 
@@ -12,7 +12,7 @@ Route::get('/', function () {
 });
 
 
-Route::post('insertclient', [Clientcontroller::class,'store'])->name('insertclient');
+//Route::post('insertclient', [Clientcontroller::class,'store'])->name('insertclient');
 Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertstudent');
 //practical: without parameter
 //Route::get('omnia', function () {
@@ -71,15 +71,15 @@ Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertst
 
 //Route::get('test20', [Mycontroller::class,'My_data']);
 
-Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
-Route::get('clients', [Clientcontroller::class, 'index'])->middleware('verified')->name('clients');
-Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editClients');
-Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
-Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
-Route::delete('delClient', [Clientcontroller::class, 'destroy'])->name('delClient');
-Route::delete('forceDeleteClients', [Clientcontroller::class, 'forcedelete'])->name('forceDeleteClients');
-Route::get('trashClients', [Clientcontroller::class, 'trash'])->name('trashClients');
-Route::get('restoreClients/{id}', [Clientcontroller::class, 'restore'])->name('restoreClients');
+// Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
+// Route::get('clients', [Clientcontroller::class, 'index'])->middleware('verified')->name('clients');
+// Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editClients');
+// Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
+// Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
+// Route::delete('delClient', [Clientcontroller::class, 'destroy'])->name('delClient');
+// Route::delete('forceDeleteClients', [Clientcontroller::class, 'forcedelete'])->name('forceDeleteClients');
+// Route::get('trashClients', [Clientcontroller::class, 'trash'])->name('trashClients');
+// Route::get('restoreClients/{id}', [Clientcontroller::class, 'restore'])->name('restoreClients');
 
 
 
@@ -97,8 +97,20 @@ Route::get('restoreStudents/{id}', [Studentcontroller::class, 'restore'])->name(
 
 
 //Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
-//Route::post('recform1', [Mycontroller::class, 'receiveForm1'])->name('receiveform1');
-//Route::post('recform1', function () {
+Route::get('mysession', [Mycontroller::class, 'myVal']);
+Route::get('restoresession', [Mycontroller::class, 'restoreVal']);
+Route::get('deletesession', [Mycontroller::class, 'deleteVal']);
+Route::get('deleteAllsession', [Mycontroller::class, 'deleteAllSession']);
+Route::get('mysession', [Mycontroller::class, 'myValFlas']);
+Route::get('restoresession', [Mycontroller::class, 'restoreValFlash']);
+Route::get('clientMail', [Mycontroller::class, 'sendClientMail']);
+
+
+Route::get('contact', [Mycontroller::class, 'testimonial2']);
+
+Route::post('/send-email', [Mycontroller::class, 'send'])->name('contact.send');
+
+//Route::post('recform1', function () {Route::get('restoresession', [Mycontroller::class, 'restoreVal']);
 
  // Route::get('form1', [Mycontroller::class,'receiveForm1']);
 
