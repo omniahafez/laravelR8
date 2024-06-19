@@ -71,7 +71,7 @@ $data['active'] = isset ($request->active);
 
         
         client::create($data);
-        return redirect('clients');
+        return redirect('custom.clients');
     }
     /**
      * Display the specified resource.
@@ -141,7 +141,7 @@ $fileName= $this->upload($request->image, 'assets/images');
 
 
        Client:: where('id', $id)->update($data);
-       return redirect('clients');
+       return redirect('custom.clients');
     }
     
 
@@ -152,7 +152,7 @@ $fileName= $this->upload($request->image, 'assets/images');
     {
         $id = $request->id;
         Client:: where('id', $id)->delete();
-        return redirect('clients');
+        return redirect('custom.clients');
     }
 
 /**
@@ -169,7 +169,7 @@ $fileName= $this->upload($request->image, 'assets/images');
    public function restore(string $id)
    {
     Client:: where('id', $id)->restore();
-    return redirect('clients');
+    return redirect('custom.clients');
    }
 /**
      * forcedelete.
@@ -178,7 +178,7 @@ $fileName= $this->upload($request->image, 'assets/images');
     {
         $id = $request->id;
         Client:: where('id', $id)->forcedelete();
-        return redirect('trashClients');
+        return redirect('custom/trashClients');
     }
 
     public function erMsg()

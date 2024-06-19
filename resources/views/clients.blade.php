@@ -34,10 +34,10 @@
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
         <td>{{$client->active ? 'yes':'No'}}</td>
-        <td><a href="{{ route('editClients', $client->id)}}">Edit</a></td>
-        <td><a href="{{ route('showClients', $client->id)}}">show client</a></td>
+        <td><a href="{{ route('custom.editClients', $client->id)}}">Edit</a></td>
+        <td><a href="{{ route('custom.showClients', $client->id)}}">show client</a></td>
         <td>
-        <form action="{{ route ('delClient')}}"  method="post">
+        <form action="{{ route ('custom.delClient')}}"  method="post">
         @csrf
     @method('delete')
             <input type="hidden" value="{{$client->id}}" name="id">

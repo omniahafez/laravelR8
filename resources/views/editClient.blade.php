@@ -12,7 +12,7 @@
 @include('includes.nav')
 <h2>edit client</h2>
 
-<form action="{{ route('updateClients', ['id' => $client->id])}}" method="post" enctype="multipart/form-data">
+<form action="{{ route('custom.updateClients', ['id' => $client->id])}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
   <label for="fname">client name:</label><br>

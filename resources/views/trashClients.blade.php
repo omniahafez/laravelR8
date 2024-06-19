@@ -32,10 +32,10 @@
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
-        <td><a href="{{ route('restoreClients', $client->id)}}">restore</a></td>
-        <td><a href="{{ route('showClients', $client->id)}}">show client</a></td>
+        <td><a href="{{ route('custom.restoreClients', $client->id)}}">restore</a></td>
+        <td><a href="{{ route('custom.showClients', $client->id)}}">show client</a></td>
         <td>
-        <form action="{{ route ('forceDeleteClients')}}"  method="post">
+        <form action="{{ route ('custom.forceDeleteClients')}}"  method="post">
         @csrf
     @method('delete')
             <input type="hidden" value="{{$client->id}}" name="id">

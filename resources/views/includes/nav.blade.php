@@ -5,9 +5,9 @@
       <a class="navbar-brand" href="#">clients</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class= "active"> <a href="{{ route ('addClient')}}">add</a></li>
-          <li><a href="{{ route ('clients')}}">clients</a></li>
-          <li><a href="{{ route ('trashClients')}}">trashed</a></li>
+      <li class= "active"> <a href="{{ route ('custom.addClient')}}">add</a></li>
+          <li><a href="{{ route ('custom.clients')}}">clients</a></li>
+          <li><a href="{{ route ('custom.trashClients')}}">trashed</a></li>
           @yeild('menu')
     @stack('submenu')
       <li><a href="#">page 2</a></li>

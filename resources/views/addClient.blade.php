@@ -12,7 +12,7 @@
 @include('includes.nav')
 <h2>HTML Forms</h2>
 
-<form action="{{ route('insertclient')}}" method="post" enctype="multipart/form-data">
+<form action="{{ route('custom.insertclient')}}" method="post" enctype="multipart/form-data">
     @csrf
     <label for="lname">clientName:</label><br>
   <p style="color: red">
