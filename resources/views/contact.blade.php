@@ -11,7 +11,8 @@
 
 <div class="container mt-5">
   <h2>Contact Us</h2>
-  <form id="contactForm" novalidate>
+  <form id="contactForm" action="{{ route('contact.send') }}" method="post" novalidate>
+    @csrf
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control" id="name" name="name" required>

@@ -6,6 +6,11 @@ use App\Http\Controllers\Mycontroller;
 use App\Http\Controllers\Studentcontroller;
 use Illuminate\Support\Facades\Mail;
 
+Route::group(
+  [
+      'prefix' => LaravelLocalization::setLocale(),
+      'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+  ], function(){
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,7 +77,7 @@ Route::post('insertstudent', [Studentcontroller::class,'store'])->name('insertst
 //Route::get('test20', [Mycontroller::class,'My_data']);
 
 // Route::get('addClient', [Clientcontroller::class, 'create'])->name('addClient');
-// Route::get('clients', [Clientcontroller::class, 'index'])->middleware('verified')->name('clients');
+// Route::get('clients', [Clientcontroller::class, 'index'])->name('clients');
 // Route::get('editClients/{id}', [Clientcontroller::class, 'edit'])->name('editClients');
 // Route::put('updateClients/{id}', [Clientcontroller::class, 'update'])->name('updateClients');
 // Route::get('showClients/{id}', [Clientcontroller::class, 'show'])->name('showClients');
@@ -106,10 +111,15 @@ Route::get('restoresession', [Mycontroller::class, 'restoreValFlash']);
 Route::get('clientMail', [Mycontroller::class, 'sendClientMail']);
 
 
-Route::get('contact', [Mycontroller::class, 'testimonial2']);
+//Route::get('contact', [Mycontroller::class, 'testimonial2']);
 
-Route::post('/send-email', [Mycontroller::class, 'send'])->name('contact.send');
+//Route::post('send-email', [Mycontroller::class, 'submit'])->name('contact.send');
 
+
+
+
+Route::get('contact', [MyController::class, 'showForm'])->name('contact.form');
+Route::post('contact.send', [MyController::class, 'sendMail'])->name('contact.send');
 //Route::post('recform1', function () {Route::get('restoresession', [Mycontroller::class, 'restoreVal']);
 
  // Route::get('form1', [Mycontroller::class,'receiveForm1']);
@@ -130,3 +140,4 @@ Route::get('/send-test-email', function () {
 
   return 'Test email sent!';
 });
+  });

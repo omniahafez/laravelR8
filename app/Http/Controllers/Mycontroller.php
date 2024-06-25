@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\ContactClient;
 use App\Models\Client;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Testimonial;
+use App\Mail\ContactMail;
 
 
 
@@ -89,30 +89,27 @@ return"mail send";
     
 //     }
 
-    public function testimonial2(){
+public function showForm()
+{
+    return view('contact');
+}
 
-        return view ('contact');
-    }
+public function sendMail(Request $request)
+{
+    $details = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'message' => $request->message,
+    ];
 
-    public function send(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
+    Mail::to('recipient@example.com')->send(new ContactMail($details));
 
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message,
-        ];
-        
-        Mail::to('mezo30782@gmail.com')->send(new Testimonial($data));
-        return back()->with('message', 'Email sent successfully!');
-    }
+    //return back()->with('success', 'Your message has been sent successfully!');
+    return"mail send";
+}
+
+
+
 }
 
 
